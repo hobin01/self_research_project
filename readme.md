@@ -8,7 +8,7 @@
 
 #### 실행 환경 : Google Colab
 
-#### API : tensorflow2 
+#### 프레임워크 : tensorflow2 
 
 
 
