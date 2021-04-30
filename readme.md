@@ -18,17 +18,18 @@
 
 <h3> 1. 데이터셋 및 소스코드</h3>
 
-| 디렉토리       | 이름                                | 설명                                                         |
-| -------------- | ----------------------------------- | ------------------------------------------------------------ |
-| data_making    | crawling.ipynb                      | 데이터셋을 위한 이미지 크롤링                                |
-|                | img_data_making.ipynb               | 크롤링한 자료 type, shape 일치시키기                         |
-|                | img_encrypt.ipynb                   | 이미지 데이터 암호화 (AES128, ECB, CBC, OFB 모드) (1000장)   |
-|                | AES128Encrypted10roundImageData.zip | AES128을 이용해 암호화된 이미지 압축 파일 (256*256 pixel)    |
-|                |                                     |                                                              |
-| 128pixel_model | 128 modle test.ipynb                | 128 픽셀 ECB, CBC, OFB 데이터 모델 및 학습 파일 (AES128)     |
-|                | pickles128pixel.zip                 | 128 * 128 pixel 이미지에 대한 pickle 값 (array, dtype=uint8) |
-|                |                                     |                                                              |
-| AES, DES       | aes, des block enc.ipynb            | AES128, Single DES 블록별 암호화 알고리즘 구현<br>(블록만으로 구현했기 때문에 전체 평문에 대해서는 추가 구현 필요) <br>(암호화 이미지 판별을 위한 것이기 때문에 복호화 알고리즘은 따로 구현하지 않았다.) |
+| 디렉토리       | 이름                                        | 설명                                                         |
+| -------------- | ------------------------------------------- | ------------------------------------------------------------ |
+| data_making    | crawling.ipynb                              | 데이터셋을 위한 이미지 크롤링                                |
+|                | img_data_making.ipynb                       | 크롤링한 자료 type, shape 일치시키기                         |
+|                | img_encrypt.ipynb                           | 이미지 데이터 암호화 (AES128, ECB, CBC, OFB 모드) (1000장)   |
+|                | CBC_img, ECB_img, OFB_img                   | AES128을 이용해 암호화된 이미지 파일 디렉토리 (256*256 pixel) |
+|                | des_encrypt_img.ipynb                       | 이미지 데이터 암호화 (single DES, ECB, CBC, OFB 모드) (1000장) |
+|                |                                             |                                                              |
+| 128pixel_model | 128 modle test.ipynb                        | 128 픽셀 ECB, CBC, OFB 데이터 모델 및 학습 파일 (AES128)     |
+|                | cbc128.pickle, ecb128.pickle, ofb128.pickle | AES128, 128 * 128 pixel 이미지에 대한 pickle 값 (array, dtype=uint8) |
+|                |                                             |                                                              |
+| AES, DES       | aes, des block enc.ipynb                    | AES128, Single DES 블록별 암호화 알고리즘 구현<br>(블록만으로 구현했기 때문에 전체 평문에 대해서는 추가 구현 필요) <br>(암호화 이미지 판별을 위한 것이기 때문에 복호화 알고리즘은 따로 구현하지 않았다.) |
 
 
 
