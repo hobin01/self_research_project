@@ -34,6 +34,7 @@
 | des_128pixel_model | pickle (디렉토리)                           | Single DES를 이용해 원본 데이터 1000장 (128 *128 )을 ECB, CBC, OFB로 1round, 2round, 16round(full round) 암호화 한 이미지 파일 pickle |
 |                    | des_16round_model.ipynb                     | DES의 16round ECB, CBC, OFB 모드에 대한 학습(모델은 AES128 학습 때와 동일) |
 |                    | des_1round_model.ipynb                      | strides 활용하여 DES의 라인을 더 잘 특정하여 학습할 수 있도록 수정, 2가지 모드 판별과 3가지 모드 판별 모델 구현 |
+|                    | des_2round_model.ipynb                      | 라인의 특징을 더 잘 파악하기 위한 kernel size 조절 및 pooling size 조절 |
 
 
 
@@ -69,3 +70,13 @@
 - DES의 경우, 8bytes 블록이 라인을 형성함을 이용해 학습 모델 구현 시 strides를 활용해 라인의 특징을 더 잘 학습할 수 있도록 수정
   - 1라운드 암호화 이미지의 경우 CBC와 ECB, OFB는 확연한 차이를 보인다. (정확도 99%) 또한 OFB의 경우, 기본 IV 만으로 Enc을 진행하기 때문에 라인이 생기는 것 외에는 암호화가 진행되지 않고, 원본 이미지를 그대로 가져간다. 이 때문에 ECB와 OFB 모드의 구분 또한 동일한 모델로 판별 시 99%의 정확도를 얻었다.
   - ECB, CBC 모드 판별, CBC, OFB 모드 판별, ECB, OFB 모드 판별 모드 1라운드 암호화에서는 학습이 잘 이루어졌기에, 동일 학습 모델을 출력층만 수정하여 3가지 모드 판별 시 97%의 정확도를 얻었다.
+- 2라운드 암호화 이미지의 경우 OFB 모드에서 전체 1000장 데이터 중 150여 장의 이미지만이 세로선의 특징을 가짐을 확인 (전수 조사) 그에 따라 기존 모델(des_1round_model.ipynb)에 적용 시 CBC, OFB 판별 시 50%의 정확도를 가짐.
+  - 새로운 모델 생성
+  - 기존 모델 (des_1round_model.ipynb)에서 kernel_size=(4,1), pool_size=(2,1), stride=(1,4) 로 조정하여정사각형 커널이 아닌, 세로 라인의 특징을 살리기 위한 직사각형 커널과 풀링을 적용.
+  - CBC, OFB 판별의 경우 60%~65% 정도의 정확성을 가짐
+  - 3가지 모드 모두 판별 시 (ECB, CBC, OFB) 75%~80% 정도의 정확성을 가짐
+
+
+
+### 4. 결과
+
